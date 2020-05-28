@@ -5,13 +5,13 @@
  */
 package DataProcessing.concurs_lab.Repositories;
 
-import DataProcessing.concurs_lab.Classes.Group;
+import DataProcessing.concurs_lab.Classes.Grouppp;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author Yurii
  */
-public interface GroupRepository extends CrudRepository<Group, Long> {
+public interface GroupRepository extends CrudRepository<Grouppp, Long> {
     
 }

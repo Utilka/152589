@@ -6,11 +6,14 @@
 package DataProcessing.concurs_lab.Classes;
 
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 /**
@@ -21,25 +24,37 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 @Entity
 public class Activity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
     @Column(name = "name")
     private String name = "N/A";
     @Column(name = "date")
-    private String date = "N/A";
+    private String date = "N/A"; // переписать со строки в обьект времени?
     @Column(name = "score")
     private String score = "N/A";
     @Column(name = "type")
     private String type = "Default";
     
     // Subject
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private Subject ofSubject = new Subject();
     // Student
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student = new Student();
     
     public Activity() {
         this.name = this.getName();
     }
     
+    public Activity(Subject ofSubject,Student student) {
+        
+        this.name = this.getName();
+        this.ofSubject=ofSubject;
+        this.student=student;
+    }
     public long getId() {
         return id;
     }
@@ -84,6 +99,34 @@ public class Activity {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    /**
+     * @return the ofSubject
+     */
+    public Subject getOfSubject() {
+        return ofSubject;
+    }
+
+    /**
+     * @param ofSubject the ofSubject to set
+     */
+    public void setOfSubject(Subject ofSubject) {
+        this.ofSubject = ofSubject;
+    }
+
+    /**
+     * @return the student
+     */
+    public Student getStudent() {
+        return student;
+    }
+
+    /**
+     * @param student the student to set
+     */
+    public void setStudent(Student student) {
+        this.student = student;
     }
     
     

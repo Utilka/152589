@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -24,43 +25,36 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
  */
 @EnableAutoConfiguration
 @Entity
-public class Subject {
+public class Grouppp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
+    
     @Column(name = "name")
     private String name = "N/A";
     
-    // Grouppp    
-    @OneToOne(fetch = FetchType.EAGER)
-    private Grouppp inGroup ;
-    // Students from group list
-    // Activities List    
+    // Students list
     @OneToMany(
-            mappedBy = "ofSubject",
+            mappedBy = "inGroup",
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
-    private Set<Activity> activities = new HashSet<Activity>();
+    private Set<Student> studentList = new HashSet<Student>();
+    
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "inGroup")
 
+    @JoinColumn(name = "id_of_subject", referencedColumnName = "id")
+    private Subject subject = new Subject();
+
+    public Grouppp() {}
     
-    public Subject() {
-        this.name = this.getName();
-    }
-    
-    public Subject(Grouppp inGroup,Set<Activity> activities) {
+    public Grouppp(Subject subject,Set<Student> studentList) {
         
-        this.name = this.getName();
-        this.inGroup=inGroup;
-        this.activities=activities;
+        this.subject=subject;
+        this.studentList=studentList;
     }
-    
-    public Subject(Set<Activity> activities) {
-        
-        this.name = this.getName();
-        this.activities=activities;
-    }
-    
     public long getId() {
         return id;
     }
@@ -74,38 +68,36 @@ public class Subject {
     }
 
     public void setName(String name) {
-//        this.name = name +" - "+ this.group.name;
         this.name = name;
     }
 
     /**
-     * @return the inGroup
+     * @return the studentList
      */
-    public Grouppp getInGroup() {
-        return inGroup;
+    public Set<Student> getStudentList() {
+        return studentList;
     }
 
     /**
-     * @param inGroup the inGroup to set
+     * @param studentList the studentList to set
      */
-    public void setInGroup(Grouppp inGroup) {
-        this.inGroup = inGroup;
+    public void setStudentList(Set<Student> studentList) {
+        this.studentList = studentList;
     }
 
     /**
-     * @return the activities
+     * @return the subject
      */
-    public Set<Activity> getActivities() {
-        return activities;
+    public Subject getSubject() {
+        return subject;
     }
 
     /**
-     * @param activities the activities to set
+     * @param subject the subject to set
      */
-    public void setActivities(Set<Activity> activities) {
-        this.activities = activities;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
-    
     
     
 }

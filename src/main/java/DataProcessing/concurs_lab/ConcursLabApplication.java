@@ -1,6 +1,7 @@
 package DataProcessing.concurs_lab;
 
 import DataProcessing.concurs_lab.Classes.Activity;
+import DataProcessing.concurs_lab.Classes.Grouppp;
 import DataProcessing.concurs_lab.Classes.Student;
 import DataProcessing.concurs_lab.Classes.Subject;
 import DataProcessing.concurs_lab.Repositories.ActivityRepository;
@@ -14,14 +15,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.apache.commons.csv.*;
 import DataProcessing.concurs_lab.Repositories.StudentRepository;
 import DataProcessing.concurs_lab.Repositories.SubjectRepository;
+import java.util.HashSet;
 
 @SpringBootApplication
 public class ConcursLabApplication implements CommandLineRunner {
     
     @Autowired
     StudentRepository studentRepository;
+    @Autowired
     SubjectRepository subjectRepository;
+    @Autowired
     ActivityRepository activityRepository;
+    @Autowired
     GroupRepository groupRepository;
     
     public static void main(String[] args) {
@@ -36,7 +41,7 @@ public class ConcursLabApplication implements CommandLineRunner {
             Student student = new Student();
                 
             student.setName(csvRecord.get("name")); 
-            student.setGroup(csvRecord.get("group"));
+//            student.setGroup(csvRecord.get("group"));
             student.setPhone(csvRecord.get("phone"));
             student.setPhoto(csvRecord.get("photo"));
             student.setYear(Integer.parseInt(csvRecord.get("year")));
@@ -83,11 +88,36 @@ public class ConcursLabApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         
-        addStudents("students.csv");// файлы кидать в корень проэкта
-        addSubjects("subjects.csv");
-        addActivities("activities.csv");
+//        addStudents("students.csv");// файлы кидать в корень проэкта
+//        addSubjects("subjects.csv");
+//        addActivities("activities.csv");
+        
+//act
+        Activity activity1 = new Activity();
+        
+        HashSet<Activity> activityList = new HashSet<Activity>();
+        activityList.add(activity1);
+        
+        Subject subject1 = new Subject(activityList);
+        
+        Student student1 = new Student(activityList);
+        
+        HashSet<Student> studentList = new HashSet<Student>();
+        studentList.add(student1);
+        
+        Grouppp group1 = new Grouppp(subject1,studentList);
+        
+        activity1.setOfSubject(subject1);
+        activity1.setStudent(student1);
         
         
+        subject1.setInGroup(group1);
+        student1.setInGroup(group1);
+        
+        groupRepository.save(group1);
+        subjectRepository.save(subject1);
+        studentRepository.save(student1);
+        activityRepository.save(activity1);
         // for student in group create activity
     }
 }
