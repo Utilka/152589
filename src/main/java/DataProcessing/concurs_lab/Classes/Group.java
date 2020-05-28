@@ -18,7 +18,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
  */
 @EnableAutoConfiguration
 @Entity
-public class Subject {
+public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -26,13 +26,9 @@ public class Subject {
     @Column(name = "name")
     private String name = "N/A";
     
-    // Group
-    // Students from group list
-    // Activities List
-    
-    public Subject() {
-        this.name = this.getName();
-    }
+    // Students list
+
+    public Group() {}
     
     public long getId() {
         return id;
@@ -47,10 +43,8 @@ public class Subject {
     }
 
     public void setName(String name) {
-//        this.name = name +" - "+ this.group.name;
         this.name = name;
     }
-    
     
     
 }

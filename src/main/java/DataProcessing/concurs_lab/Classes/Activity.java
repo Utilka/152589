@@ -5,6 +5,7 @@
  */
 package DataProcessing.concurs_lab.Classes;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,11 @@ public class Activity {
     
     // Subject
     // Student
-
+    
+    public Activity() {
+        this.name = this.getName();
+    }
+    
     public long getId() {
         return id;
     }
@@ -48,7 +53,13 @@ public class Activity {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if(!this.date.equals("N/A")){
+            this.name = this.type+" - "+this.date; 
+        }else{
+            Date currentDate = new Date();
+            this.name = this.type+" - "+currentDate;
+        }
+        
     }
 
     public String getDate() {
