@@ -5,14 +5,14 @@
  */
 package DataProcessing.concurs_lab.UI;
 
-import DataProcessing.concurs_lab.Classes.Movie;
-import DataProcessing.concurs_lab.Repositories.MovieRepository;
+import DataProcessing.concurs_lab.Classes.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import DataProcessing.concurs_lab.Repositories.StudentRepository;
 
 /**
  *
@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class appUIController {
 
-    private final MovieRepository movieRepository;
+    private final StudentRepository studentRepository;
     
     @Autowired
-    public appUIController(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
+    public appUIController(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
   
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -33,10 +33,10 @@ public class appUIController {
         
         
         
-        Iterable<Movie> movies = movieRepository.findAll();
-        model.addAttribute("movies", movies);
+//        Iterable<Student> movies = movieRepository.findAll();
+//        model.addAttribute("movies", movies);
         
-        System.out.println(movies.iterator().next().getPoster());
+//        System.out.println(movies.iterator().next().getPoster());
         
         return "index";
     }

@@ -5,7 +5,7 @@
  */
 package DataProcessing.concurs_lab.Repositories;
 
-import DataProcessing.concurs_lab.Classes.Movie;
+import DataProcessing.concurs_lab.Classes.Student;
 import org.springframework.data.repository.CrudRepository;
 
 
@@ -14,6 +14,6 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author Yurii
  */
-public interface MovieRepository extends CrudRepository<Movie, Long>{
+public interface StudentRepository extends CrudRepository<Student, Long>{
     
 }
