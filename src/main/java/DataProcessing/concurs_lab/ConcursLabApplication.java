@@ -130,7 +130,7 @@ public class ConcursLabApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         
         addStudents("students.csv");// файлы кидать в корень проэкта
-        addSubjects("subjects.csv");
+//        addSubjects("subjects.csv");
         addActivities("activities.csv");
         
 //        Student student = studentRepository.findById(1l).orElse(null);

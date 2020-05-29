@@ -44,18 +44,24 @@ public class Grouppp {
             fetch = FetchType.EAGER)
     private Set<Student> studentList = new HashSet<Student>();
     
-    @OneToOne(fetch = FetchType.EAGER,
+    
+    @OneToMany(
+            mappedBy = "inGroup",
             cascade = CascadeType.ALL,
-            mappedBy = "inGroup")
-
-    @JoinColumn(name = "id_of_subject", referencedColumnName = "id")
-    private Subject subject ;
+            fetch = FetchType.EAGER)
+    private Set<Subject> subjectSet = new HashSet<Subject>();
+//    @OneToOne(fetch = FetchType.EAGER,
+//            cascade = CascadeType.ALL,
+//            mappedBy = "inGroup")
+//
+//    @JoinColumn(name = "id_of_subject", referencedColumnName = "id")
+//    private Subject subject ;
 
     public Grouppp() {}
     
-    public Grouppp(Subject subject,Set<Student> studentList) {
+    public Grouppp(Set<Subject> subjectSet,Set<Student> studentList) {
         
-        this.subject=subject;
+        this.subjectSet=subjectSet;
         this.studentList=studentList;
     }
     public long getId() {
@@ -97,20 +103,22 @@ public class Grouppp {
     public void addStudent(Student student){
         this.studentList.add(student);
     }
-    
+
     /**
-     * @return the subject
+     * @return the subjectSet
      */
-    public Subject getSubject() {
-        return subject;
+    public Set<Subject> getSubjectSet() {
+        return subjectSet;
     }
 
     /**
-     * @param subject the subject to set
+     * @param subjectSet the subjectSet to set
      */
-    public void setSubject(Subject subject) {
-        this.subject = subject;
+    public void setSubjectSet(Set<Subject> subjectSet) {
+        this.subjectSet = subjectSet;
     }
+    
+ 
     
     
 }

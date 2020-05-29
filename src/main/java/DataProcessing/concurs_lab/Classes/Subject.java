@@ -14,6 +14,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -33,7 +35,8 @@ public class Subject {
     private String name = "N/A";
     
     // Grouppp    
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "group_id")
     private Grouppp inGroup ;
     // Students from group list
     // Activities List    
