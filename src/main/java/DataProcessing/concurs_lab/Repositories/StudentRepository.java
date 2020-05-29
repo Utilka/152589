@@ -15,5 +15,5 @@ import org.springframework.data.repository.CrudRepository;
  * @author Yurii
  */
 public interface StudentRepository extends CrudRepository<Student, Long>{
-    
+    Iterable<Student> findByName(String name);
 }

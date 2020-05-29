@@ -5,6 +5,7 @@
  */
 package DataProcessing.concurs_lab.UI;
 
+import DataProcessing.concurs_lab.Classes.Grouppp;
 import DataProcessing.concurs_lab.Classes.Student;
 import DataProcessing.concurs_lab.Repositories.ActivityRepository;
 import DataProcessing.concurs_lab.Repositories.GroupRepository;
@@ -16,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import DataProcessing.concurs_lab.Repositories.StudentRepository;
 import DataProcessing.concurs_lab.Repositories.SubjectRepository;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -43,15 +48,27 @@ public class appUIController {
   
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showStartingPage(Model model) {
-        
-        
-        
-//        Iterable<Student> movies = movieRepository.findAll();
-//        model.addAttribute("movies", movies);
-        
-//        System.out.println(movies.iterator().next().getPoster());
+
+//        Iterable<Student> students = studentRepository.findAll();
+
+        Iterable<Grouppp> groups = groupRepository.findAll();
+//        List sortedGroups = new ArrayList(groups);
+//        Collections.sort(sortedGroups, Grouppp.GroupNameComparator);
+        model.addAttribute("groups", groups);
         
         return "index";
+    }
+    @RequestMapping(value = "/group/{id}", method = RequestMethod.GET)
+    public String showGroupPage(@PathVariable("id") long id, Model model) {
+
+        Grouppp group = groupRepository.findById(id).orElse(null);
+        if(group != null){
+            model.addAttribute("group", group);
+        }else{
+            
+        }
+        
+        return "group";
     }
     
 }

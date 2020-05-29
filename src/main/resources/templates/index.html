@@ -4,36 +4,15 @@
         <title>Concurs</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            .movie_text{
-
-                text-align: center;
-            }
-        </style>
+        <link rel="stylesheet" th:href="@{/style.css}"/>
     </head>
     <body>
-        <h2 style="text-align: center;">Movies</h2>
-        <table style="width:100%; border: 1px solid black;">
-            <tr>
-              <th>ID</th>
-              <th>TITLE</th> 
-              <th>YEAR</th>
-              <th>COUNTRY</th>
-              <th>GENRE</th> 
-              <th>DIRECTOR</th>
-              <th>MINUTES</th>
-              <th>POSTER</th> 
-            </tr>
-            <tr th:each="movie: ${movies}">
-              <td style="border: 1px solid black;"><p style="text-align: center;" th:text="${movie.getId()}"></p></td>
-              <td style="border: 1px solid black;"><p style="text-align: center;" th:text="${movie.getTitle()}"></p></td>
-              <td style="border: 1px solid black;"><p style="text-align: center;" th:text="${movie.getYear()}"></p></td>
-              <td style="border: 1px solid black;"><p style="text-align: center;" th:text="${movie.getCountry()}"></p></td>
-              <td style="border: 1px solid black;"><p style="text-align: center;" th:text="${movie.getGenre()}"></p></td>
-              <td style="border: 1px solid black;"><p style="text-align: center;" th:text="${movie.getDirector()}"></p></td>
-              <td style="border: 1px solid black;"><p style="text-align: center;" th:text="${movie.getMinutes()}"></p></td>
-              <td style="border: 1px solid black;max-width: 850px;max-height: 150px;overflow: auto;"><p style="margin: 10px;" th:text="${movie.getPoster()}"></p></td>
-            </tr>
-          </table>
+        <h2 style="text-align: center;">Groups</h2>
+          <div class="group" th:each="group: ${groups}">
+            <h4><a href="#" th:text="${group.getName()}"></a></h4>
+            <div class="students">
+              <p th:each="student: ${group.getSortedStudentList()}"><a href="#"  th:text="${student.getName()}"></a></p>
+            </div>
+          </div>
     </body>
 </html>

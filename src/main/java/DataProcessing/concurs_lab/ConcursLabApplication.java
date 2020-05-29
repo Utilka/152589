@@ -16,6 +16,7 @@ import org.apache.commons.csv.*;
 import DataProcessing.concurs_lab.Repositories.StudentRepository;
 import DataProcessing.concurs_lab.Repositories.SubjectRepository;
 import java.util.HashSet;
+import java.util.Optional;
 
 @SpringBootApplication
 public class ConcursLabApplication implements CommandLineRunner {
@@ -40,13 +41,26 @@ public class ConcursLabApplication implements CommandLineRunner {
             
             Student student = new Student();
                 
-            student.setName(csvRecord.get("name")); 
-//            student.setGroup(csvRecord.get("group"));
+            student.setName(csvRecord.get("name"));
             student.setPhone(csvRecord.get("phone"));
             student.setPhoto(csvRecord.get("photo"));
             student.setYear(Integer.parseInt(csvRecord.get("year")));
-                
-            studentRepository.save(student);
+            
+            String group_name = csvRecord.get("group");
+            Iterable<Grouppp> groups = groupRepository.findByName(group_name);
+            if(groups.iterator().hasNext()){
+                Grouppp group = groups.iterator().next();
+                group.addStudent(student);
+                student.setInGroup(group);
+                groupRepository.save(group);
+            }else{
+                Grouppp group = new Grouppp();
+                group.addStudent(student);
+                group.setName(group_name);
+                student.setInGroup(group);
+                groupRepository.save(group);
+                studentRepository.save(student);
+            }
         }
         csvReader.close();
     }
@@ -56,14 +70,24 @@ public class ConcursLabApplication implements CommandLineRunner {
         for (CSVRecord csvRecord : csvParser) {
             
             Subject subject = new Subject();
-                
-            subject.setName(csvRecord.get("name")); 
-//            subject.setGroup(csvRecord.get("group"));
-//            subject.setPhone(csvRecord.get("phone"));
-//            subject.setPhoto(csvRecord.get("photo"));
-//            subject.setYear(Integer.parseInt(csvRecord.get("year")));
-                
-            subjectRepository.save(subject);
+            
+            String group_name = csvRecord.get("group");  
+            Iterable<Grouppp> groups = groupRepository.findByName(group_name);
+            if(groups.iterator().hasNext()){
+                Grouppp group = groups.iterator().next();
+                group.setSubject(subject);
+                subject.setInGroup(group);
+                subject.setName(csvRecord.get("name")); 
+                groupRepository.save(group);
+            }else{
+                Grouppp group = new Grouppp();
+                group.setSubject(subject);
+                group.setName(group_name);
+                subject.setInGroup(group);
+                subject.setName(csvRecord.get("name")); 
+                groupRepository.save(group);
+                subjectRepository.save(subject);
+            }
         }
         csvReader.close();
     }
@@ -73,14 +97,31 @@ public class ConcursLabApplication implements CommandLineRunner {
         for (CSVRecord csvRecord : csvParser) {
             
             Activity activity = new Activity();
-                
-//            activity.setName(csvRecord.get("name")); 
-//            activity.setGroup(csvRecord.get("group"));
-//            activity.setPhone(csvRecord.get("phone"));
-//            activity.setPhoto(csvRecord.get("photo"));
-//            activity.setYear(Integer.parseInt(csvRecord.get("year")));
-                
-            activityRepository.save(activity);
+            
+            activity.setDate(csvRecord.get("date"));
+            activity.setType(csvRecord.get("type"));
+            activity.setScore(csvRecord.get("score"));
+            String student_name = csvRecord.get("student");
+            String subject_name = csvRecord.get("subject");
+            activity.setName();
+            
+            Iterable<Student> students = studentRepository.findByName(student_name);
+            if(students.iterator().hasNext()){
+                Student student = students.iterator().next();
+                activity.setStudent(student);
+            }else{
+                System.out.println("No student " + student_name);
+                continue;
+            }
+            
+            Iterable<Subject> subjects = subjectRepository.findByName(subject_name);
+            if(subjects.iterator().hasNext()){
+                Subject subject = subjects.iterator().next();
+                activity.setOfSubject(subject);
+                activityRepository.save(activity);
+            }else{
+                System.out.println("No subject " + subject_name);
+            }
         }
         csvReader.close();
     }
@@ -88,36 +129,16 @@ public class ConcursLabApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         
-//        addStudents("students.csv");// файлы кидать в корень проэкта
-//        addSubjects("subjects.csv");
-//        addActivities("activities.csv");
+        addStudents("students.csv");// файлы кидать в корень проэкта
+        addSubjects("subjects.csv");
+        addActivities("activities.csv");
         
-//act
-        Activity activity1 = new Activity();
+//        Student student = studentRepository.findById(1l).orElse(null);
+//        System.out.println(student.getActivities().size());
         
-        HashSet<Activity> activityList = new HashSet<Activity>();
-        activityList.add(activity1);
-        
-        Subject subject1 = new Subject(activityList);
-        
-        Student student1 = new Student(activityList);
-        
-        HashSet<Student> studentList = new HashSet<Student>();
-        studentList.add(student1);
-        
-        Grouppp group1 = new Grouppp(subject1,studentList);
-        
-        activity1.setOfSubject(subject1);
-        activity1.setStudent(student1);
-        
-        
-        subject1.setInGroup(group1);
-        student1.setInGroup(group1);
-        
-        groupRepository.save(group1);
-        subjectRepository.save(subject1);
-        studentRepository.save(student1);
-        activityRepository.save(activity1);
         // for student in group create activity
+        
+        System.out.println("finished data init");
     }
+    
 }

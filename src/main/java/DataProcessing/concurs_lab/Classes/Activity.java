@@ -67,7 +67,7 @@ public class Activity {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName() {
         if(!this.date.equals("N/A")){
             this.name = this.type+" - "+this.date; 
         }else{

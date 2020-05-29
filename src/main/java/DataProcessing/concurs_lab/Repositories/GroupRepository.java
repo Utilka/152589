@@ -13,5 +13,5 @@ import org.springframework.data.repository.CrudRepository;
  * @author Yurii
  */
 public interface GroupRepository extends CrudRepository<Grouppp, Long> {
-    
+    Iterable<Grouppp> findByName(String name);
 }

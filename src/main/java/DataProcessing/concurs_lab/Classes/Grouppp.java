@@ -5,7 +5,10 @@
  */
 package DataProcessing.concurs_lab.Classes;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -46,7 +49,7 @@ public class Grouppp {
             mappedBy = "inGroup")
 
     @JoinColumn(name = "id_of_subject", referencedColumnName = "id")
-    private Subject subject = new Subject();
+    private Subject subject ;
 
     public Grouppp() {}
     
@@ -77,6 +80,12 @@ public class Grouppp {
     public Set<Student> getStudentList() {
         return studentList;
     }
+    
+    public List getSortedStudentList() {
+        List sortedList = new ArrayList(studentList);
+        Collections.sort(sortedList, Student.StudentNameComparator);
+        return sortedList;
+    }
 
     /**
      * @param studentList the studentList to set
@@ -84,7 +93,11 @@ public class Grouppp {
     public void setStudentList(Set<Student> studentList) {
         this.studentList = studentList;
     }
-
+    
+    public void addStudent(Student student){
+        this.studentList.add(student);
+    }
+    
     /**
      * @return the subject
      */

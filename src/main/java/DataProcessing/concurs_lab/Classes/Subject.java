@@ -74,8 +74,11 @@ public class Subject {
     }
 
     public void setName(String name) {
-//        this.name = name +" - "+ this.group.name;
-        this.name = name;
+        if(this.inGroup == null){
+            this.name = name;
+        }else{
+            this.name = name +" - "+ this.inGroup.getName();
+        }
     }
 
     /**

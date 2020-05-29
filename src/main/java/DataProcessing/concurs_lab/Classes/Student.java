@@ -5,6 +5,7 @@
  */
 package DataProcessing.concurs_lab.Classes;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -145,6 +146,16 @@ public class Student {
     public void setActivities(Set<Activity> activities) {
         this.activities = activities;
     }
+    
+    public static Comparator<Student> StudentNameComparator = new Comparator<Student>() {
+        public int compare(Student student1, Student student2) {
+          String studentName1 = student1.getName().toUpperCase();
+          String studentName2 = student2.getName().toUpperCase();
+          return studentName1.compareTo(studentName2);
+         //descending order
+         //return studentName2.compareTo(studentName1);
+        }
+    };
 
     
     
