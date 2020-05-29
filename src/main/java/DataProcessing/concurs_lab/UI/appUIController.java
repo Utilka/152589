@@ -7,6 +7,7 @@ package DataProcessing.concurs_lab.UI;
 
 import DataProcessing.concurs_lab.Classes.Grouppp;
 import DataProcessing.concurs_lab.Classes.Student;
+import DataProcessing.concurs_lab.Classes.Subject;
 import DataProcessing.concurs_lab.Repositories.ActivityRepository;
 import DataProcessing.concurs_lab.Repositories.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,11 +65,29 @@ public class appUIController {
         Grouppp group = groupRepository.findById(id).orElse(null);
         if(group != null){
             model.addAttribute("group", group);
-        }else{
-            
         }
         
         return "group";
+    }
+    @RequestMapping(value = "/subject/{id}", method = RequestMethod.GET)
+    public String showSubjectPage(@PathVariable("id") long id, Model model) {
+
+        Subject subject = subjectRepository.findById(id).orElse(null);
+        if(subject != null){
+            model.addAttribute("subject", subject);
+        }
+        
+        return "activities";
+    }
+    @RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
+    public String showStudentPage(@PathVariable("id") long id, Model model) {
+
+        Student student = studentRepository.findById(id).orElse(null);
+        if(student != null){
+            model.addAttribute("student", student);
+        }
+        
+        return "student";
     }
     
 }

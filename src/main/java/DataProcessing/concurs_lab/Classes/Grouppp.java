@@ -103,12 +103,22 @@ public class Grouppp {
     public void addStudent(Student student){
         this.studentList.add(student);
     }
+    
+    public void addSubject(Subject subject){
+        this.subjectSet.add(subject);
+    }
 
     /**
      * @return the subjectSet
      */
     public Set<Subject> getSubjectSet() {
         return subjectSet;
+    }
+    
+    public List getSortedSubjectList() {
+        List sortedList = new ArrayList(subjectSet);
+        Collections.sort(sortedList, Subject.SubjectNameComparator);
+        return sortedList;
     }
 
     /**

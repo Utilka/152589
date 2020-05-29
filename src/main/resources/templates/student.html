@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/style.css}"/>
+    </head>
+    <body>
+        <div th:switch="${student}">
+            <div th:case="null">
+                <h2>Error, No such Student</h2>
+            </div>
+            <div class="content" th:case="*">
+                <h2 style="text-align: center;" th:inline="text">
+                    [[${student.getName()}]]  from  [[${student.getInGroup().getName()}]]
+                </h2>
+                <div class="student" >
+                    
+                    <h4 th:inline="text">Phone - [[${student.getPhone()}]]</h4>
+                    <h4 th:inline="text">Year - [[${student.getYear()}]]</h4>
+                    <h4 th:inline="text">Photo - [[${student.getPhoto()}]]</h4>
+                </div>
+                <div class="subject" th:each="subject: ${student.getInGroup().getSortedSubjectList()}">
+                    <h4><a href="#" th:text="${subject.getName()}"></a></h4>
+                    <p th:each="activity: ${subject.getSortedActivitiesList()}" th:inline="text">
+                        [[${activity.getName()}]]  -  [[${subject.getStudentScore(student, activity.getName())}]]
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

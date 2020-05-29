@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Subject</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/style.css}"/>
+    </head>
+    <body>
+        <div th:switch="${subject}">
+            <div th:case="null">
+                <h2>Error, No such Subject</h2>
+            </div>
+            <div th:case="*">
+                <h2 style="text-align: center;" th:text="${subject.getName()}"></h2>
+                <table>
+                    <tr>
+                      <th>Student</th>
+                      <th th:each="activity: ${subject.getSortedActivitiesList()}" th:text="${activity.getName()}"></th>
+                    </tr>
+                    <!-- <div class="student" th:each="student: ${subject.getInGroup().getSortedStudentList()}">
+                        <h4><a href="#" th:text="${student.getName()}"></a></h4>
+                    </div> -->
+                    <tr th:each="student: ${subject.getInGroup().getSortedStudentList()}">
+                      <td th:text="${student.getName()}"></td>
+                      <td th:each="activity: ${subject.getSortedActivitiesList()}" th:text="${subject.getStudentScore(student, activity.getName())}"></td>
+                    </tr>
+                  </table>
+            </div>
+
+        </div>
+    </body>
+</html>

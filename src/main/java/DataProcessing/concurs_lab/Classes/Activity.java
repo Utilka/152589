@@ -5,6 +5,7 @@
  */
 package DataProcessing.concurs_lab.Classes;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Column;
@@ -64,7 +65,7 @@ public class Activity {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName() {
@@ -128,6 +129,16 @@ public class Activity {
     public void setStudent(Student student) {
         this.student = student;
     }
+    
+    public static Comparator<Activity> ActivityDateComparator = new Comparator<Activity>() {
+        public int compare(Activity subject1, Activity subject2) {
+          String subjectName1 = subject1.getDate().toUpperCase();
+          String subjectName2 = subject2.getDate().toUpperCase();
+          //return subjectName1.compareTo(subjectName2);
+         //descending order
+          return subjectName2.compareTo(subjectName1);
+        }
+    };
     
     
     

@@ -75,13 +75,13 @@ public class ConcursLabApplication implements CommandLineRunner {
             Iterable<Grouppp> groups = groupRepository.findByName(group_name);
             if(groups.iterator().hasNext()){
                 Grouppp group = groups.iterator().next();
-                group.setSubject(subject);
+                group.addSubject(subject);
                 subject.setInGroup(group);
                 subject.setName(csvRecord.get("name")); 
                 groupRepository.save(group);
             }else{
                 Grouppp group = new Grouppp();
-                group.setSubject(subject);
+                group.addSubject(subject);
                 group.setName(group_name);
                 subject.setInGroup(group);
                 subject.setName(csvRecord.get("name")); 
@@ -130,8 +130,9 @@ public class ConcursLabApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         
         addStudents("students.csv");// файлы кидать в корень проэкта
-//        addSubjects("subjects.csv");
+        addSubjects("subjects.csv");
         addActivities("activities.csv");
+        addActivities("activities2.csv");
         
 //        Student student = studentRepository.findById(1l).orElse(null);
 //        System.out.println(student.getActivities().size());

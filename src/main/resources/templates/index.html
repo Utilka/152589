@@ -9,9 +9,9 @@
     <body>
         <h2 style="text-align: center;">Groups</h2>
           <div class="group" th:each="group: ${groups}">
-            <h4><a href="#" th:text="${group.getName()}"></a></h4>
+            <h4><a th:href="@{/group/{id}(id=${group.getId()})}" th:text="${group.getName()}"></a></h4>
             <div class="students">
-              <p th:each="student: ${group.getSortedStudentList()}"><a href="#"  th:text="${student.getName()}"></a></p>
+              <p th:each="student: ${group.getSortedStudentList()}"><a th:href="@{/student/{id}(id=${student.getId()})}"  th:text="${student.getName()}"></a></p>
             </div>
           </div>
     </body>

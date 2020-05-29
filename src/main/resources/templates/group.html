@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Concurs</title>
+        <title>Group</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" th:href="@{/style.css}"/>
@@ -14,10 +14,10 @@
             <div class="content" th:case="*">
                 <h2 style="text-align: center;" th:text="${group.getName()}"></h2>
                 <div class="student" th:each="student: ${group.getSortedStudentList()}">
-                    <h4><a href="#" th:text="${student.getName()}"></a></h4>
+                    <h4><a th:href="@{/student/{id}(id=${student.getId()})}" th:text="${student.getName()}"></a></h4>
                 </div>
-                <div class="subject" th:each="subject: ${group.}">
-                    <h4><a href="#" th:text="${student.getName()}"></a></h4>
+                <div class="subject" th:each="subject: ${group.getSortedSubjectList()}">
+                    <h4><a th:href="@{/subject/{id}(id=${subject.getId()})}" th:text="${subject.getName()}"></a></h4>
                 </div>
             </div>
 
