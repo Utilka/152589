@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Group</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" th:href="@{/style.css}"/>
-    </head>
-    <body>
+<html lang="en">
+
+<head>
+    <title>Group</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--    <link rel="stylesheet" th:href="@{/style.css}" />-->
+    <link rel="stylesheet" th:href="@{/util.css}" />
+    <link rel="stylesheet" th:href="@{/main.css}" />
+
+    <!--===============================================================================================-->
+</head>
+
+<body>
+
+    <div class="limiter">
+        
+        
+        
         <div th:switch="${group}">
             <div th:case="null">
                 <h2>Error, No such Group</h2>
@@ -20,7 +32,7 @@
                     <h4><a th:href="@{/subject/{id}(id=${subject.getId()})}" th:text="${subject.getName()}"></a></h4>
                 </div>
             </div>
-
+</div>
         </div>
     </body>
 </html>

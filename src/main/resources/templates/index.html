@@ -1,18 +1,55 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Concurs</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" th:href="@{/style.css}"/>
-    </head>
-    <body>
-        <h2 style="text-align: center;">Groups</h2>
-          <div class="group" th:each="group: ${groups}">
-            <h4><a th:href="@{/group/{id}(id=${group.getId()})}" th:text="${group.getName()}"></a></h4>
-            <div class="students">
-              <p th:each="student: ${group.getSortedStudentList()}"><a th:href="@{/student/{id}(id=${student.getId()})}"  th:text="${student.getName()}"></a></p>
+<html lang="en">
+
+<head>
+    <title>Group</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--    <link rel="stylesheet" th:href="@{/style.css}" />-->
+    <link rel="stylesheet" th:href="@{/util.css}" />
+    <link rel="stylesheet" th:href="@{/main.css}" />
+
+    <!--===============================================================================================-->
+</head>
+
+<body>
+
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="table101 ver1">
+                    <h2 class="table-top" style="text-align: center;color: white;font-size: 1.6rem;">Groups</h2>
+                    <div class="group" th:each="group: ${groups}">
+
+                        <div class="pricingTable">
+
+                            <ul class="pricingTable-firstTable">
+
+                                <li class="pricingTable-firstTable_table" th:href="@{/group/{id}(id=${group.getId()})}">
+                                    <h1 class="pricingTable-firstTable_table__header">
+                                        <a class="table-top" th:href="@{/group/{id}(id=${group.getId()})}" th:text="${group.getName()}"></a>
+                                    </h1>
+
+                                    <ul class="pricingTable-firstTable_table__options">
+                                        <li th:each="student: ${group.getSortedStudentList()}">
+                                            <a th:href="@{/student/{id}(id=${student.getId()})}" th:text="${student.getName()}"> ✓</a>
+                                        </li>
+                                    </ul>
+                                    <a th:href="@{/group/{id}(id=${group.getId()})}">
+                                        <div class="pricingTable-firstTable_table__getstart">Show group
+                                            <div style="font-size: 0; " th:text="${group.getName()}"></div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
             </div>
-          </div>
-    </body>
-</html>
+        </div>
+    </div>
+</body>

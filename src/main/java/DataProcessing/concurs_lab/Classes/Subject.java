@@ -117,6 +117,9 @@ public class Subject {
         //List<String> uniqueStates = sortedList.stream().map(Activity::getName).distinct().collect(toList());
         List<Activity> uniqueList = new ArrayList();
         boolean isIn = false;
+        if (sortedList.isEmpty()){
+            return null;
+        }
         for (Activity activity : sortedList) {
             if(!uniqueList.isEmpty()){
                 for(Activity activity2 : uniqueList){
