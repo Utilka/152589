@@ -239,4 +239,20 @@ public class appUIController {
         }
     }
     
+    @RequestMapping(value = "/changeScore", method = RequestMethod.POST)
+    public String POSTShopPage(
+            @RequestParam("new_score") String new_score,
+            @RequestParam("student_id") String student_id,
+            @RequestParam("activity_name") String activity_name,
+            @RequestParam("subject_id") String subject_id,
+            Model model) {
+        
+        Student student = studentRepository.findById(Long.parseLong(student_id)).orElse(null);
+        Subject subject = subjectRepository.findById(Long.parseLong(subject_id)).orElse(null);
+        
+        subject.setStudentScore(student, activity_name, new_score);
+        subjectRepository.save(subject);
+        
+        return "redirect:/subject/"+subject_id;
+    }
 }
