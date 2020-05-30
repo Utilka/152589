@@ -15,12 +15,28 @@
                 <h2 style="text-align: center;" th:inline="text">
                     [[${student.getName()}]]  from  [[${student.getInGroup().getName()}]]
                 </h2>
-                <div class="student" >
-                    
-                    <h4 th:inline="text">Phone - [[${student.getPhone()}]]</h4>
+                <img th:src="${student.getPhoto()}" alt="Student Photo"><br><br>
+                <form method="POST" action="/change_student" class="student" >
+
+                    <input type="text" style="display: none;" name="student_id" th:value="${student.getId()}">
+
+                    <label for="fname">Name:</label>
+                    <input id="fname" type="text" name="name" th:value="${student.getName()}"><br><br>
+
+                    <label for="fphone">Phone:</label>
+                    <input id="fphone" type="text" name="phone" th:value="${student.getPhone()}"><br><br>
+
+                    <label for="fyear">Year:</label>
+                    <input id="fyear" type="number" name="year" th:value="${student.getYear()}"><br><br>
+
+                    <label for="fphoto">Photo:</label>
+                    <input id="fphoto" type="text" name="photo" th:value="${student.getPhoto()}"><br><br>
+
+                    <input type="submit" value="Submit">
+                    <!-- <h4 th:inline="text">Phone - [[${student.getPhone()}]]</h4>
                     <h4 th:inline="text">Year - [[${student.getYear()}]]</h4>
-                    <h4 th:inline="text">Photo - [[${student.getPhoto()}]]</h4>
-                </div>
+                    <h4 th:inline="text">Photo - [[${student.getPhoto()}]]</h4> -->
+                </form>
                 <div class="subject" th:each="subject: ${student.getInGroup().getSortedSubjectList()}">
                     <h4><a th:href="@{/subject/{id}(id=${subject.getId()})}" th:text="${subject.getName()}"></a></h4>
                     <p th:each="activity: ${subject.getSortedActivitiesList()}" th:inline="text">
