@@ -134,9 +134,9 @@ public class Activity {
         public int compare(Activity subject1, Activity subject2) {
           String subjectName1 = subject1.getDate().toUpperCase();
           String subjectName2 = subject2.getDate().toUpperCase();
-          //return subjectName1.compareTo(subjectName2);
+          return subjectName1.compareTo(subjectName2);
          //descending order
-          return subjectName2.compareTo(subjectName1);
+          //return subjectName2.compareTo(subjectName1);
         }
     };
     
