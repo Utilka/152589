@@ -35,7 +35,7 @@
                                     </thead>
                                     <tbody>
                                         <tr class="row100 body" th:each="student: ${subject.getInGroup().getSortedStudentList()}">
-                                            <td class="cell100 column1" th:text="${student.getName()}"></td>
+                                            <td class="cell100 column1"><a th:href="@{/student/{id}(id=${student.getId()})}" th:text="${student.getName()}"></a></td>
 
                                         </tr>
                                     </tbody>

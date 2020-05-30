@@ -22,7 +22,7 @@
                     <h4 th:inline="text">Photo - [[${student.getPhoto()}]]</h4>
                 </div>
                 <div class="subject" th:each="subject: ${student.getInGroup().getSortedSubjectList()}">
-                    <h4><a href="#" th:text="${subject.getName()}"></a></h4>
+                    <h4><a th:href="@{/subject/{id}(id=${subject.getId()})}" th:text="${subject.getName()}"></a></h4>
                     <p th:each="activity: ${subject.getSortedActivitiesList()}" th:inline="text">
                         [[${activity.getName()}]]  -  [[${subject.getStudentScore(student, activity.getName())}]]
                     </p>
