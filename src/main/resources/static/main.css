@@ -546,7 +546,8 @@
     }
     
     .image-user-profile {
-        background-image: url(/images/img.png);
+        /* background-image: url(/images/img.png); */
+        display: block;
         height: 180px;
         width: 180px;
         background-size: cover;
