@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Group</title>
+    <title>Subject</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,29 +10,56 @@
     <link rel="stylesheet" th:href="@{/util.css}" />
     <link rel="stylesheet" th:href="@{/main.css}" />
 
-    <!--===============================================================================================-->
+    <!--================Если в таблице много столбиков, ее можно скролить===============================================================================-->
 </head>
 
 <body>
 
     <div class="limiter">
-        
-        
-        
-        <div th:switch="${group}">
-            <div th:case="null">
-                <h2>Error, No such Group</h2>
-            </div>
-            <div class="content" th:case="*">
-                <h2 style="text-align: center;" th:text="${group.getName()}"></h2>
-                <div class="student" th:each="student: ${group.getSortedStudentList()}">
-                    <h4><a th:href="@{/student/{id}(id=${student.getId()})}" th:text="${student.getName()}"></a></h4>
+        <div class="container-table101">
+            <div class="wrap-table100">
+                <div class="table100 ver1">
+
+                    <div th:switch="${group}">
+                        <div th:case="null">
+                            <h2>Error, No such Group</h2>
+                        </div>
+                        <div class="content" th:case="*">
+                            <h2 class="table-top" style="text-align: center;" th:text="${group.getName()}"></h2>
+                            <div class="flex-wrapper-block ">
+                                <div class="half-block border-right">
+
+                                    <a class="student white pricingTable-firstTable_table__getstart" th:each="student: ${group.getSortedStudentList()}" th:href="@{/student/{id}(id=${student.getId()})}" th:text="${student.getName()}">
+
+                                    </a>
+                                </div>
+                                <div class="half-block">
+
+                                    <a class="subject white pricingTable-firstTable_table__getstart" th:each="subject: ${group.getSortedSubjectList()}" th:href="@{/subject/{id}(id=${subject.getId()})}" th:text="${subject.getName()}">
+
+                                    </a>
+                                </div>
+                                <!-- <div class="half-block">
+
+                                    <div class="student white" th:each="subject: ${group.getSortedSubjectList()}" th:href="@{/subject/{id}(id=${subject.getId()})}" th:text="${student.getName()}">
+
+                                    </div>
+                                </div> -->
+                                <!-- <div class="half-block">
+                                    <div class="subject" th:each="subject: ${group.getSortedSubjectList()}">
+                                        <h4>
+                                            <a th:href="@{/subject/{id}(id=${subject.getId()})}" th:text="${subject.getName()}"></a>
+                                        </h4>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="subject" th:each="subject: ${group.getSortedSubjectList()}">
-                    <h4><a th:href="@{/subject/{id}(id=${subject.getId()})}" th:text="${subject.getName()}"></a></h4>
-                </div>
             </div>
-</div>
         </div>
-    </body>
+    </div>
+
+</body>
+
 </html>

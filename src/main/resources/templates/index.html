@@ -35,7 +35,9 @@
                                         <li th:each="student: ${group.getSortedStudentList()}">
                                             <a th:href="@{/student/{id}(id=${student.getId()})}" th:text="${student.getName()}"> ✓</a>
                                         </li>
+
                                     </ul>
+
                                     <a th:href="@{/group/{id}(id=${group.getId()})}">
                                         <div class="pricingTable-firstTable_table__getstart">Show group
                                             <div style="font-size: 0; " th:text="${group.getName()}"></div>
