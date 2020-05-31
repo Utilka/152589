@@ -26,28 +26,28 @@
                     <div th:switch="${message}" class="message">
                         <div th:case="null"></div>
                         <div th:case="*" class="mesasge_content">
-                            <h2 th:text="${message}"></h2>
+                            <h2 class='table-top1' style="   table-top1  margin: 0 auto;    text-align: center" th:text=" ${message} "></h2>
                         </div>
                     </div>
-                    <h2 class="table-top" style="text-align: center;">Subjects upload</h2>
-                    <form method="POST" action="/uploadSubjects" enctype="multipart/form-data">
+                    <h2 class="table-top " style="text-align: center; ">Subjects upload</h2>
+                    <form method="POST " action="/uploadSubjects " enctype="multipart/form-data ">
                         <table>
                             <tr>
-                                <td style="text-align: center;">
-                                    <form:label style="text-align: center;" path="file">Select a "CSV" file to upload</form:label>
+                                <td style="text-align: center; ">
+                                    <form:label style="text-align: center; " path="file ">Select a "CSV " file to upload</form:label>
                                 </td>
                             </tr>
                             <tr>
 
-                                <td style=" margin: 0 auto;    text-align: center;">
-                                    <input type="file" name="file" id="file" />
-                                    <label for="file" class="btn-1">upload file</label>
+                                <td style=" margin: 0 auto; text-align: center; ">
+                                    <input type="file " name="file " id="file " />
+                                    <label for="file " class="btn-1 ">upload file</label>
 
 
-                                    <!-- <input style="margin: 0 auto;" type="file" name="file" /></td> -->
+                                    <!-- <input style="margin: 0 auto; " type="file " name="file " /></td> -->
                             </tr>
                             <tr>
-                                <td><input style="margin: 0 auto;" type="submit" value="Submit" /></td>
+                                <td><input style="margin: 0 auto; " type="submit " value="Submit " /></td>
                             </tr>
                         </table>
                     </form>
