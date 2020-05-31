@@ -85,6 +85,7 @@
                                     </thead>
                                     <tbody>
                                         <tr class="table111 body">
+
                                             <div th:each="subject: ${student.getInGroup().getSortedSubjectList()}">
                                                 <td class=" table111 column3 small-text" th:each="activity: ${subject.getSortedActivitiesList()}" th:inline="text">
                                                     [[${activity.getName()}]]: &nbsp; [[${subject.getStudentScore(student, activity.getName())}]]
