@@ -19,7 +19,10 @@
         <div class="container-table100">
             <div class="wrap-table100">
                 <div class="table100 ver1">
-                    <div class="arrow-bottom"></div>
+                    <a class="top-left" th:href="@{/}">
+                        <div class="arrow-bottom">
+                            <img class="back-arrow" th:src="@{/Group 1.png}" alt=""></div>
+                    </a>
                     <div th:switch="${subject}">
                         <div th:case="null">
                             <h2>Error, No such Subject</h2>
@@ -27,7 +30,7 @@
                         <div th:case="*">
                             <h2 class="table-top" th:text="${subject.getName()}"> </h2>
                             <div class="table100-firstcol">
-                               
+
                                 <table class="table-shadow">
                                     <thead>
                                         <tr class="row100 head">
@@ -36,7 +39,9 @@
                                     </thead>
                                     <tbody>
                                         <tr class="row100 body" th:each="student: ${subject.getInGroup().getSortedStudentList()}">
-                                            <td class="cell100 column1"><a th:href="@{/student/{id}(id=${student.getId()})}" th:text="${student.getName()}"></a></td>
+                                            <td class="cell100 column1">
+                                                <a th:href="@{/student/{id}(id=${student.getId()})}" th:text="${student.getName()}"></a>
+                                            </td>
 
                                         </tr>
                                     </tbody>
@@ -59,9 +64,9 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr class="row100 body " th:each="student: ${subject.getInGroup().getSortedStudentList()} ">
-                                                        <td class="cell100 column2 " th:each="activity: ${subject.getSortedActivitiesList()} ">                                               
+                                                        <td class="cell100 column2 " th:each="activity: ${subject.getSortedActivitiesList()} ">
                                                             <form style="display: flex; flex-wrap: wrap;  margin-left: 40%; display: flex;  flex-wrap: wrap;  margin-left: 40%;  margin: 2px 0; margin-left: 40%" method="POST" action="/changeScore">
-                                                                <input type="text" style="display: flex; margin-right: 10px; flex-wrap: wrap; width: 20px;" name = "new_score" th:value="${subject.getStudentScore(student, activity.getName())}">
+                                                                <input type="text" style="display: flex; margin-right: 10px; flex-wrap: wrap; width: 20px;" name="new_score" th:value="${subject.getStudentScore(student, activity.getName())}">
                                                                 <input type="text" style="display: none;" name="student_id" th:value="${student.getId()}">
                                                                 <input type="text" style="display: none;" name="activity_name" th:value="${activity.getName()}">
                                                                 <input type="text" style="display: none;" name="subject_id" th:value="${subject.getId()}">

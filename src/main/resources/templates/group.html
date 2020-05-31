@@ -19,9 +19,10 @@
         <div class="container-table101">
             <div class="wrap-table100">
                 <div class="table100 ver1">
-  <div class="arrow-bottom">
-      
-</div>
+                    <a class="top-left" th:href="@{/}">
+                        <div class="arrow-bottom">
+                            <img class="back-arrow" th:src="@{/Group 1.png}" alt=""></div>
+                    </a>
                     <div th:switch="${group}">
                         <div th:case="null">
                             <h2>Error, No such Group</h2>
