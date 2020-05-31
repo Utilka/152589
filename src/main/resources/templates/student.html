@@ -19,10 +19,10 @@
         <div class="container-table100">
             <div class="wrap-table100">
                 <div class="table100 ver1">
-                    <div class="top-left">
+                    <a class="top-left" th:href="@{/}">
                         <div class="arrow-bottom">
                             <img class="back-arrow" th:src="@{/Group 1.png}" alt=""></div>
-                    </div>
+                    </a>
                     <div th:switch="${student}">
                         <div th:case="null">
                             <h2>Error, No such Student</h2>

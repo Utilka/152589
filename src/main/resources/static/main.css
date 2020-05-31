@@ -535,7 +535,7 @@
         display: block;
     }
     
-    .top-left:hover {
+    .arrow-bottom:hover {
         left: 5px;
         position: absolute;
         top: 5px;
