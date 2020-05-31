@@ -60,11 +60,7 @@
                                                 <tbody>
                                                     <tr class="row100 body " th:each="student: ${subject.getInGroup().getSortedStudentList()} ">
                                                         <td class="cell100 column2 " th:each="activity: ${subject.getSortedActivitiesList()} ">                                               
-                                                            <form style="display: flex; flex-wrap: wrap;  margin-left: 40%;     display: flex;
-    flex-wrap: wrap;
-    margin-left: 40%;
-    margin: 2px 0;
-    margin-left: 40%" method="POST" action="/changeScore">
+                                                            <form style="display: flex; flex-wrap: wrap;  margin-left: 40%; display: flex;  flex-wrap: wrap;  margin-left: 40%;  margin: 2px 0; margin-left: 40%" method="POST" action="/changeScore">
                                                                 <input type="text" style="display: flex; margin-right: 10px; flex-wrap: wrap; width: 20px;" name = "new_score" th:value="${subject.getStudentScore(student, activity.getName())}">
                                                                 <input type="text" style="display: none;" name="student_id" th:value="${student.getId()}">
                                                                 <input type="text" style="display: none;" name="activity_name" th:value="${activity.getName()}">

@@ -508,17 +508,43 @@
     .border-right {
         border-right: 1px solid lightgray;
     }
-.arrow-bottom {
-left: 0;
-    position: absolute;
-    top: 0;
-    width: 0;
-    height: 0;
-    border-top: 60px solid #c9a8fa;
-    border-right: 60px solid transparent;
-  }
-
-
+    
+    .arrow-bottom {
+        left: 0;
+        position: relative;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-top: 60px solid #c9a8fa;
+        border-right: 60px solid transparent;
+    }
+    
+    .top-left {
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 60px;
+        height: 60px;
+    }
+    
+    .back-arrow {
+        position: absolute;
+        top: -50px;
+        height: 20px;
+        left: 10px;
+        display: block;
+    }
+    
+    .top-left:hover {
+        left: 5px;
+        position: absolute;
+        top: 5px;
+        width: 0;
+        height: 0;
+        border-top: 60px solid #c9a8fa;
+        border-right: 60px solid transparent;
+    }
+    
     .image-user-profile {
         background-image: url(/images/img.png);
         height: 180px;

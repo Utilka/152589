@@ -19,13 +19,16 @@
         <div class="container-table100">
             <div class="wrap-table100">
                 <div class="table100 ver1">
-                      <div class="arrow-bottom" th:href="/"></div>
+                    <div class="top-left">
+                        <div class="arrow-bottom">
+                            <img class="back-arrow" th:src="@{/Group 1.png}" alt=""></div>
+                    </div>
                     <div th:switch="${student}">
                         <div th:case="null">
                             <h2>Error, No such Student</h2>
                         </div>
                         <div class="content" th:case="*">
-                            <h2 class="table-top" style="text-align: center;" th:inline="text"> User profile</h2>
+                            <h2 class="table-top" style="text-align: center;" th:inline="text">User profile</h2>
                             <!-- <h2 style="text-align: center;" th:inline="text">
                                 [[${student.getName()}]] from [[${student.getInGroup().getName()}]]
                             </h2> -->
@@ -97,8 +100,8 @@
                         </div>
                     </div>
 
-   </div>
-                            </div>
+                </div>
+            </div>
 
-                        </div>
-                    </div>
+        </div>
+    </div>
