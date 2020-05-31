@@ -20,9 +20,34 @@
             <div class="wrap-table100">
                 <div class="table101 ver1">
                     <h2 class="table-top" style="text-align: center;color: white;font-size: 1.6rem;">Groups</h2>
-                    <a th:href="@{/uploadStudents}">Add Students from CSV</a>
-                    <a th:href="@{/uploadSubjects}">Add Subjects from CSV</a>
-                    <a th:href="@{/uploadActivities}">Add Activities from CSV</a>
+
+
+                    <div class="group" th:each="group: ${groups}">
+
+                        <div class="pricingTable">
+
+                            <ul class="pricingTable-firstTable">
+                                <li class="pricingTable-firstTable_table1">
+                                    <a class="table-top1 " th:href="@{/uploadStudents}">Add Students from CSV</a>
+
+                                </li>
+                                <li class="pricingTable-firstTable_table1">
+                                    <a class="table-top1" th:href="@{/uploadSubjects}">Add Subjects from CSV</a>
+
+                                </li>
+                                <li class="pricingTable-firstTable_table1">
+                                    <a class="table-top1" th:href="@{/uploadActivities}">Add Activities from CSV</a>
+
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+
                     <div class="group" th:each="group: ${groups}">
 
                         <div class="pricingTable">
@@ -40,7 +65,7 @@
                                         </li>
 
                                     </ul>
-                                    
+
                                     <a th:href="@{/group/{id}(id=${group.getId()})}">
                                         <div class="pricingTable-firstTable_table__getstart">Show group
                                             <div style="font-size: 0; " th:text="${group.getName()}"></div>
