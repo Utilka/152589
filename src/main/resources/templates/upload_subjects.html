@@ -19,6 +19,10 @@
         <div class="container-table100">
             <div class="wrap-table100">
                 <div class="table100 ver1">
+                    <a class="top-left" th:href="@{/}">
+                        <div class="arrow-bottom">
+                            <img class="back-arrow" th:src="@{/Group 1.png}" alt=""></div>
+                    </a>
                     <div th:switch="${message}" class="message">
                         <div th:case="null"></div>
                         <div th:case="*" class="mesasge_content">
