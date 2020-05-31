@@ -35,7 +35,7 @@
                                     </thead>
                                     <tbody>
                                         <tr class="row100 body" th:each="student: ${subject.getInGroup().getSortedStudentList()}">
-                                            <td class="cell100 column1" th:text="${student.getName()}"></td>
+                                            <td class="cell100 column1"><a th:href="@{/student/{id}(id=${student.getId()})}" th:text="${student.getName()}"></a></td>
 
                                         </tr>
                                     </tbody>
@@ -46,7 +46,7 @@
                                 <div class="table100-nextcols">
                                     <div th:switch="${subject.getSortedActivitiesList()}">
                                         <div th:case="null">
-                                            <div class="no-subject ">Error, No such Subject</h2>
+                                            <div class="no-subject ">No Activities Yet</h2>
                                             </div>
                                         </div>
                                         <div th:case="* ">
@@ -58,7 +58,16 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr class="row100 body " th:each="student: ${subject.getInGroup().getSortedStudentList()} ">
-                                                        <td class="cell100 column2 " th:each="activity: ${subject.getSortedActivitiesList()} " th:text="${subject.getStudentScore(student, activity.getName())} "></td>
+                                                        <td class="cell100 column2 " th:each="activity: ${subject.getSortedActivitiesList()} ">
+                                                            <p th:text="${subject.getStudentScore(student, activity.getName())} "></p>
+                                                            <form method="POST" action="/changeScore">
+                                                                <input type="text" name = "new_score">
+                                                                <input type="text" style="display: none;" name="student_id" th:value="${student.getId()}">
+                                                                <input type="text" style="display: none;" name="activity_name" th:value="${activity.getName()}">
+                                                                <input type="text" style="display: none;" name="subject_id" th:value="${subject.getId()}">
+                                                                <input type="submit" value="Submit">
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
