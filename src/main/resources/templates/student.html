@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 029f651a0ae991cbf588bddc1e99a4c5bd6f4c52
 <html lang="en">
 
 <head>
@@ -99,60 +95,9 @@
 
                         </div>
                     </div>
-<<<<<<< HEAD
-=======
 
-=======
-<html>
-    <head>
-        <title>Student</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" th:href="@{/style.css}"/>
-    </head>
-    <body>
-        <div th:switch="${student}">
-            <div th:case="null">
-                <h2>Error, No such Student</h2>
-            </div>
-            <div class="content" th:case="*">
-                <h2 style="text-align: center;" th:inline="text">
-                    [[${student.getName()}]]  from  [[${student.getInGroup().getName()}]]
-                </h2>
-                <img th:src="${student.getPhoto()}" alt="Student Photo"><br><br>
-                <form method="POST" action="/change_student" class="student" >
+   </div>
+                            </div>
 
-                    <input type="text" style="display: none;" name="student_id" th:value="${student.getId()}">
-
-                    <label for="fname">Name:</label>
-                    <input id="fname" type="text" name="name" th:value="${student.getName()}"><br><br>
-
-                    <label for="fphone">Phone:</label>
-                    <input id="fphone" type="text" name="phone" th:value="${student.getPhone()}"><br><br>
-
-                    <label for="fyear">Year:</label>
-                    <input id="fyear" type="number" name="year" th:value="${student.getYear()}"><br><br>
-
-                    <label for="fphoto">Photo:</label>
-                    <input id="fphoto" type="text" name="photo" th:value="${student.getPhoto()}"><br><br>
-
-                    <input type="submit" value="Submit">
-                    <!-- <h4 th:inline="text">Phone - [[${student.getPhone()}]]</h4>
-                    <h4 th:inline="text">Year - [[${student.getYear()}]]</h4>
-                    <h4 th:inline="text">Photo - [[${student.getPhoto()}]]</h4> -->
-                </form>
-                <div class="subject" th:each="subject: ${student.getInGroup().getSortedSubjectList()}">
-                    <h4><a th:href="@{/subject/{id}(id=${subject.getId()})}" th:text="${subject.getName()}"></a></h4>
-                    <p th:each="activity: ${subject.getSortedActivitiesList()}" th:inline="text">
-                        [[${activity.getName()}]]  -  [[${subject.getStudentScore(student, activity.getName())}]]
-                    </p>
->>>>>>> 5f6d6d62be8ecc6cf1bd24e3566a1295627c9158
-                </div>
-            </div>
-        </div>
-
-    </div>
-</body>
-
-</html>
->>>>>>> 029f651a0ae991cbf588bddc1e99a4c5bd6f4c52
+                        </div>
+                    </div>
