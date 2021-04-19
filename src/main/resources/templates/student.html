@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Subject</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--    <link rel="stylesheet" th:href="@{/style.css}" />-->
+    <link rel="stylesheet" th:href="@{/util.css}" />
+    <link rel="stylesheet" th:href="@{/main.css}" />
+
+    <!--================Если в таблице много столбиков, ее можно скролить===============================================================================-->
+</head>
+
+<body>
+
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="table100 ver1">
+                    <a class="top-left" th:href="@{/}">
+                        <div class="arrow-bottom">
+                            <img class="back-arrow" th:src="@{/Group 1.png}" alt=""></div>
+                    </a>
+                    <div th:switch="${student}">
+                        <div th:case="null">
+                            <h2>Error, No such Student</h2>
+                        </div>
+                        <div class="content" th:case="*">
+                            <h2 class="table-top" style="text-align: center;" th:inline="text">User profile</h2>
+                            <!-- <h2 style="text-align: center;" th:inline="text">
+                                [[${student.getName()}]] from [[${student.getInGroup().getName()}]]
+                            </h2> -->
+                            <div class="user-profile">
+                                <img th:src="${student.getPhoto()}" class="image-user-profile">
+                                <div class="tex-flex-user">
+
+
+                                    <!-- <h4 class="word-wrap-b" th:inline="text">Phone - [[${student.getPhone()}]]</h4>
+                                    <h4 class="word-wrap-b" th:inline="text">Year - [[${student.getYear()}]]</h4>
+                                    <h4 class="word-wrap-b" th:inline="text">Photo - [[${student.getPhoto()}]]</h4> -->
+
+                                    <form method="POST" action="/change_student" class="">
+                                        <input type="text" style="display: none;" name="student_id" th:value="${student.getId()}">
+                                        <div class="div-flex">
+                                            <label for="fname">Name:</label> &nbsp; &nbsp;
+                                            <input id="fname" type="text" name="name" th:value="${student.getName()}">
+                                        </div>
+                                        <div class="div-flex">
+                                            <label for="fphone">Phone:</label>&nbsp; &nbsp;
+                                            <input id="fphone" type="text" name="phone" th:value="${student.getPhone()}">
+                                        </div>
+                                        <div class="div-flex">
+                                            <label for="fyear">Year:</label>&nbsp; &nbsp;
+                                            <input id="fyear" type="number" name="year" th:value="${student.getYear()}">
+                                        </div>
+                                        <div class="div-flex">
+                                            <label for="fphoto">Photo:</label>&nbsp; &nbsp;
+                                            <input id="fphoto" type="text" name="photo" th:value="${student.getPhoto()}">
+                                        </div>
+                                        <div class="div-flex">
+                                            <input type="submit" value="Submit">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="content">
+
+
+                                <table>
+                                    <thead>
+
+                                        <tr class="table111 head pad-left">
+                                            <div th:each="subject: ${student.getInGroup().getSortedSubjectList()}">
+                                                <th class=" pad-left">
+                                                    <a class=" table111 column3 pad-left" th:href="@{/subject/{id}(id=${subject.getId()})}" th:text="${subject.getName()}"></a>
+                                                </th>
+                                            </div>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table111 body">
+
+                                            <div th:each="subject: ${student.getInGroup().getSortedSubjectList()}">
+                                                <td class=" table111 column3 small-text" th:each="activity: ${subject.getSortedActivitiesList()}">
+                                                    <!-- [[${activity.getName()}]]: &nbsp; [[${subject.getStudentScore(student, activity.getName())}]] -->
+                                                    <p class="table111" th:text="${activity.getName()}"></p>
+                                                    <form style="display: flex; flex-wrap: wrap;  margin-left: 40%; display: flex;  flex-wrap: wrap;  margin-left: 40%;  margin: 2px 0; margin-left: 40%" method="POST" action="/changeStudentScore">
+                                                        <input type="text" style="display: flex; margin-right: 10px; flex-wrap: wrap; width: 20px;" name="new_score" th:value="${subject.getStudentScore(student, activity.getName())}">
+                                                        <input type="text" style="display: none;" name="student_id" th:value="${student.getId()}">
+                                                        <input type="text" style="display: none;" name="activity_name" th:value="${activity.getName()}">
+                                                        <input type="text" style="display: none;" name="subject_id" th:value="${subject.getId()}">
+                                                        <input type="submit" value="Submit">
+                                                    </form>
+                                                </td>
+                                                <!-- <td class=" table111 column3 small-text" th:each="activity: ${subject.getSortedActivitiesList()} ">
+                                                    <form style="display: flex; flex-wrap: wrap;  margin-left: 40%; display: flex;  flex-wrap: wrap;  margin-left: 40%;  margin: 2px 0; margin-left: 40%" method="POST" action="/changeScore">
+                                                        <input type="text" style="display: flex; margin-right: 10px; flex-wrap: wrap; width: 20px;" name="new_score" th:value="${subject.getStudentScore(student, activity.getName())}">
+                                                        <input type="text" style="display: none;" name="student_id" th:value="${student.getId()}">
+                                                        <input type="text" style="display: none;" name="activity_name" th:value="${activity.getName()}">
+                                                        <input type="text" style="display: none;" name="subject_id" th:value="${subject.getId()}">
+                                                        <input type="submit" value="Submit">
+                                                    </form>
+                                                </td> -->
+                                            </div>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>

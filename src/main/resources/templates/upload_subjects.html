@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Subject</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--    <link rel="stylesheet" th:href="@{/style.css}" />-->
+    <link rel="stylesheet" th:href="@{/util.css}" />
+    <link rel="stylesheet" th:href="@{/main.css}" />
+
+    <!--================Если в таблице много столбиков, ее можно скролить===============================================================================-->
+</head>
+
+<body>
+
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="table100 ver1">
+                    <a class="top-left" th:href="@{/}">
+                        <div class="arrow-bottom">
+                            <img class="back-arrow" th:src="@{/Group 1.png}" alt=""></div>
+                    </a>
+                    <div th:switch="${message}" class="message">
+                        <div th:case="null"></div>
+                        <div th:case="*" class="mesasge_content">
+                            <h2 class='table-top1' style="   table-top1  margin: 0 auto;    text-align: center" th:text="${message}"></h2>
+                        </div>
+                    </div>
+                    <h2 class="table-top" style="text-align: center;">Subjects upload</h2>
+                    <form method="POST" action="/uploadSubjects" enctype="multipart/form-data">
+                        <table>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <form:label style="text-align: center;" path="file">Select a "CSV" file to upload</form:label>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td style="    margin: 0 auto;    text-align: center;">
+                                    <input type="file" id="file" name='file' />
+                                    <label for="file" class="btn-1">upload file</label>
+
+
+                                    <!-- <input style="margin: 0 auto;" type="file" name="file" /></td> -->
+                            </tr>
+                            <tr>
+                                <td><input style="margin: 0 auto;" type="submit" value="Submit" /></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

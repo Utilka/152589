@@ -1,16 +1,87 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<html lang="en">
+
+<head>
+    <title>Group</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--    <link rel="stylesheet" th:href="@{/style.css}" />-->
+    <link rel="stylesheet" th:href="@{/util.css}" />
+    <link rel="stylesheet" th:href="@{/main.css}" />
+
+    <!--===============================================================================================-->
+</head>
+
+<body>
+
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="table101 ver1">
+                    <h2 class="table-top" style="text-align: center;color: white;font-size: 1.6rem;">Groups</h2>
+
+                    <div>
+                        <div class="group">
+
+                            <div class="pricingTable">
+
+                                <ul class="pricingTable-firstTable">
+                                    <li class="pricingTable-firstTable_table1">
+                                        <a class="table-top1 " th:href="@{/uploadStudents}">Add Students from CSV</a>
+
+                                    </li>
+                                    <li class="pricingTable-firstTable_table1">
+                                        <a class="table-top1" th:href="@{/uploadSubjects}">Add Subjects from CSV</a>
+
+                                    </li>
+                                    <li class="pricingTable-firstTable_table1">
+                                        <a class="table-top1" th:href="@{/uploadActivities}">Add Activities from CSV</a>
+
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+
+                        <div style="         justify-content: center;        display: flex;              ">
+                            <div class="group" th:each="group: ${groups}">
+
+                                <div class="pricingTable">
+
+                                    <ul class="pricingTable-firstTable" style="   width: 600px;  display: flex;">
+
+                                        <li class="pricingTable-firstTable_table" style="         margin: 0 auto;    " th:href="@{/group/{id}(id=${group.getId()})}">
+                                            <h1 class="pricingTable-firstTable_table__header">
+                                                <a class="table-top" th:href="@{/group/{id}(id=${group.getId()})}" th:text="${group.getName()}"></a>
+                                            </h1>
+
+                                            <ul class="pricingTable-firstTable_table__options">
+                                                <li th:each="student: ${group.getSortedStudentList()}">
+                                                    <a th:href="@{/student/{id}(id=${student.getId()})}" th:text="${student.getName()}"> ✓</a>
+                                                </li>
+
+                                            </ul>
+
+                                            <a th:href="@{/group/{id}(id=${group.getId()})}">
+                                                <div class="pricingTable-firstTable_table__getstart">Show group
+                                                    <div style="font-size: 0; " th:text="${group.getName()}"></div>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
